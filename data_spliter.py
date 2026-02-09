@@ -58,7 +58,19 @@ if a== "1":
         outPath = f"{fn[0:-4]}_{i+1}.csv"
         with open(outPath,"w",encoding="cp932") as w:
             w.write(template[0:newline_positions[25]+1]+d)
-        
-    
+if a== "2":
+    print("OK. divided to two files")
+    Ach = [c for c in df.columns if "A-Ch" in c]
+    Bch = [c for c in df.columns if "B-Ch" in c]
+    dfA = df[["evt"]+Ach]
+    dfB = df[["evt"]+Bch]
+    outA = "\n".join(",".join(map(str, row)) for row in np.array(dfA))
+    outB = "\n".join(",".join(map(str, row)) for row in np.array(dfB))
+    pathA = f"{fn[0:-4]}_A.csv"
+    pathB = f"{fn[0:-4]}_B.csv"
+    with open(pathA,"w",encoding="cp932") as w:
+        w.write(template[0:newline_positions[25]+1]+outA)
+    with open(pathB,"w",encoding="cp932") as w:
+        w.write(template[0:newline_positions[25]+1]+outB)
 
     
